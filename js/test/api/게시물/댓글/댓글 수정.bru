@@ -1,0 +1,21 @@
+meta {
+  name: 댓글 수정
+  type: http
+  seq: 1
+}
+
+patch {
+  url: {{URL}}/posts/48/replies/12
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "content": "댓글 수정해봅니다."
+  }
+}
