@@ -1,10 +1,11 @@
 import Submit from '@components/Submit';
 import useInput from '@hooks/useInput';
 import userStore from '@zustand/Store';
+import { API_KEY } from '../../config/config';
 import { Link } from 'react-router-dom';
 
 export default function Login() {
-  const { accessToken, key, setAccessToken, setRefreshToken, setName, setImage, setLogin,setId } =
+  const { accessToken, setAccessToken, setRefreshToken, setName, setImage, setLogin,setId } =
     userStore((state) => ({
       email: state.email,
       setAccessToken: state.setAccessToken,
@@ -13,11 +14,11 @@ export default function Login() {
       setImage: state.setImage,
       login: state.login,
       setLogin: state.setLogin,
-      key: state.key,
       accessToken:state.accessToken,
       id:state.id,
       setId: state.setId,
     }));
+  const key = API_KEY;
   const getItem = JSON.parse(sessionStorage.getItem("user-storage")as string);
   const accessSessionToken = getItem.state.accessToken;
   const [email, onChangeEmail] = useInput();

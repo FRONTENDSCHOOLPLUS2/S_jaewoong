@@ -14,7 +14,6 @@ interface UserStore {
   accessToken: string | null;
   refreshToken: string | null;
   login: boolean;
-  key: string;
   setLogin: (login: boolean) => void;
   setAccessToken: (accessToken: string | null) => void;
   setRefreshToken: (refreshToken: string | null) => void;
@@ -36,7 +35,6 @@ export const userStore = create(
       accessToken: null,
       refreshToken: null,
       login: false,
-      key: "https://api.fesp.shop",
       setLogin: (login) => set({ login }),
       setAccessToken: (accessToken) => set({ accessToken }),
       setRefreshToken: (refreshToken) => set({ refreshToken }),
@@ -47,14 +45,7 @@ export const userStore = create(
     {
       name: "user-storage",
       getStorage: () => sessionStorage,
-      partialize: (state) => ({
-        accessToken: state.accessToken,
-        refreshToken: state.refreshToken,
-        name: state.name,
-        image: state.image,
-        login: state.login,
-        id: state.id,
-      }),
+      
     }
   )
 );
@@ -78,11 +69,11 @@ export const postStore = create<PostStore>((set)=>({
 export const commentStore = create((set) => ({
   comment: "",
   setComment: (comment) => set({ comment }),
-  commentPostId: "",
   reply_id: "",
-  commentFix: "",
-  setCommentFix: (commentFix) => set ({commentFix}),
   setReply_id : (reply_id) => set({ reply_id }),
+  commentFix: "", //
+  setCommentFix: (commentFix) => set ({commentFix}), //
+  commentPostId: "",
   setCommentPostId: (commentPostId) => set({ commentPostId }),
   setField: (field, value) => set((state) => ({ ...state, [field]: value })),
 }));
